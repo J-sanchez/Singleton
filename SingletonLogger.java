@@ -1,10 +1,17 @@
 public class SingletonLogger {
-    private static SingletonLogger intstance = new SingletonLogger();
+    //Eager initialization not memory efficient
+
+    // private static SingletonLogger intstance = new SingletonLogger();
+    private static SingletonLogger instance;
 
     private SingletonLogger() {
     }
 
-    public static SingletonLogger getInstance() {
+    //Lazy 
+    public static synchronized SingletonLogger getInstance() {
+        if (instance == null) {
+            instance = new SingletonLogger();
+        }
         return instance;
     }
 
